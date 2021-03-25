@@ -1,0 +1,5 @@
+# Project exclude paths
+/.idea
+/lesson-5/target/
+/lesson-6/target/
+/lesson-7/target/
