@@ -11,8 +11,21 @@
         <td th:text="${product.id}"></td>
         <td th:text="${product.title}"></td>
         <td th:text="${product.price}"></td>
+        <td>
+            <form action="#" th:action="@{'/delete/{id}'(id=${product.id})}" th:method="delete">
+                <button type="submit">Delete</button>
+            </form>
+        </td>
     </tr>
 </table>
+
+<form action="#" th:action="@{/}" th:object="${newproduct}" method="post">
+    <label for="title">title</label>
+    <input type="text" th:field="*{title}" id="title" placeholder="title">
+    <label for="price">price</label>
+    <input type="text" th:field="*{price}" id="price" placeholder="price">
+    <input type="submit" value="Add Product">
+</form>
 
 </body>
 </html>
