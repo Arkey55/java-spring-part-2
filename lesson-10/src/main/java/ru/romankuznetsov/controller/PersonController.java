@@ -4,11 +4,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.annotation.SessionScope;
 import ru.romankuznetsov.dto.PersonDto;
+import ru.romankuznetsov.dto.mapper.PersonDtoMapper;
 import ru.romankuznetsov.entity.Person;
 import ru.romankuznetsov.exceptions.PersonNotFoundException;
 import ru.romankuznetsov.repository.CityRepository;
 import ru.romankuznetsov.repository.PersonRepository;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -41,22 +43,24 @@ public class PersonController {
 //    }
 
     @PostMapping
-    public Person savePerson(@RequestBody PersonDto personDto){
-        Person person = new Person();
-        person.setFirstName(personDto.getFirstName());
-        person.setLastName(personDto.getLastName());
-        if (personDto.getCityId() != null){
-            person.setCity(cityRepository.findById(personDto.getCityId())
-                    .orElseThrow(() -> new PersonNotFoundException(
-                            String.format("пользователь c ID{%s} не найден", personDto.getCityId())
-            )));
-        }
+    public Person savePerson(@RequestBody @Valid PersonDto personDto){
+//        Person person = new Person();
+//        person.setFirstName(personDto.getFirstName());
+//        person.setLastName(personDto.getLastName());
+//        if (personDto.getCityId() != null){
+//            person.setCity(cityRepository.findById(personDto.getCityId())
+//                    .orElseThrow(() -> new PersonNotFoundException(
+//                            String.format("пользователь c ID{%s} не найден", personDto.getCityId())
+//            )));
+//        }
+
+        Person person = PersonDtoMapper.MAPPER.toPerson(personDto);
         personRepository.save(person);
         return person;
     }
 
     @PutMapping
-    public void updatePerson(@RequestBody Person person){
+    public void updatePerson(@RequestBody @Valid Person person){
         personRepository.save(person);
     }
 

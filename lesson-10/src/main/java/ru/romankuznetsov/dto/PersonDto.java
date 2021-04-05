@@ -1,8 +1,13 @@
 package ru.romankuznetsov.dto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+
 public class PersonDto {
+    @NotNull
     private String firstName;
-    private String lastName;
+    @NotBlank(message = "Фамилия не должна быть пустой")
+    private String secondName;
     private Long cityId;
 
     public String getFirstName() {
@@ -13,12 +18,12 @@ public class PersonDto {
         this.firstName = firstName;
     }
 
-    public String getLastName() {
-        return lastName;
+    public String getSecondName() {
+        return secondName;
     }
 
-    public void setLastName(String lastName) {
-        this.lastName = lastName;
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
     }
 
     public Long getCityId() {
