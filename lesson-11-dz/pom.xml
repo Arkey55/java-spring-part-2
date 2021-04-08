@@ -11,7 +11,7 @@
     </parent>
 
     <groupId>ru.romankuznetsov</groupId>
-    <artifactId>lesson-11</artifactId>
+    <artifactId>lesson-11-dz</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>

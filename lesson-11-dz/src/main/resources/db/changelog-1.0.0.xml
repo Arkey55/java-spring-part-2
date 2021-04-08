@@ -1,0 +1,41 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd
+   http://www.liquibase.org/xml/ns/dbchangelog
+   http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+    <changeSet id="create_table_product" author="r.kuznetsov">
+        <sql>
+            create table product(
+                id serial primary key,
+                title varchar(128),
+                price int)
+        </sql>
+    </changeSet>
+    <changeSet id="fill_table_product" author="r.kuznetsov">
+        <sql>
+            insert into product (title, price)
+            values
+            ('T-Shirt 1', 1160), ('Jumper 1', 2340), ('Dress 1', 3400), ('Jeans 1', 2100), ('Shorts 1', 800), ('Trench coat 1', 6900),
+            ('T-Shirt 2', 890), ('Jumper 2', 2850), ('Dress 2', 2900), ('Jeans 2', 2200), ('Shorts 2', 650), ('Trench coat 2', 7300),
+            ('T-Shirt 3', 1400), ('Jumper 3', 3080), ('Dress 3', 3260), ('Jeans 3', 1700), ('Shorts 3', 1050), ('Trench coat 3', 8000)
+        </sql>
+    </changeSet>
+    <changeSet id="create_table_person" author="r.kuznetsov">
+        <sql>
+            create table person(
+            id serial primary key,
+            first_name varchar(128),
+            last_name varchar(128)
+            )
+        </sql>
+    </changeSet>
+    <changeSet id="fill_table_person" author="r.kuznetsov">
+        <sql>
+            insert into person (first_name, last_name)
+            values ('Ruslan', 'Vorontsov'), ('Pavel', 'Bobrov'), ('Kristina', 'Kovalenko'), ('Svetlana', 'Sizikh')
+        </sql>
+    </changeSet>
+</databaseChangeLog>
