@@ -1,7 +1,5 @@
 package ru.romankuznetsov.controller;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,8 +9,19 @@ import ru.romankuznetsov.repository.PersonRepository;
 
 @Controller
 public class ThymeleafController {
-    @Autowired
-    private PersonRepository repository;
+
+    private final PersonRepository repository;
+
+    public ThymeleafController(PersonRepository repository) {
+        this.repository = repository;
+    }
+
+    @GetMapping("/login")
+    public String showMyLoginPage(){
+        return "login";
+    }
+
+
     @GetMapping
     public String index(Model model){
         model.addAttribute("hello", "hello");
@@ -22,20 +31,15 @@ public class ThymeleafController {
         return "index";
     }
 
-    @GetMapping("/addperson")
+    @GetMapping("/api/v1/person/addperson")
     public String getAddPerson(Model model){
         model.addAttribute("person", new Person());
         return "add_person";
     }
 
-    @GetMapping("/login")
-    public String showMyLoginPage(){
-        return "login";
-    }
-
-    @PostMapping(value = "/addperson")
+    @PostMapping(value = "/api/v1/person/addperson")
     public String addPerson(Person person){
         repository.save(person);
-        return "redirect:/";
+        return "redirect:/api/v1/person/addperson";
     }
 }

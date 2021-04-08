@@ -38,4 +38,25 @@
             values ('Ruslan', 'Vorontsov'), ('Pavel', 'Bobrov'), ('Kristina', 'Kovalenko'), ('Svetlana', 'Sizikh')
         </sql>
     </changeSet>
+    <changeSet id="create_table_role" author="r.kuznetsov">
+        <sql>
+            create table role(
+            id serial primary key,
+            name varchar(64) not null
+            )
+        </sql>
+    </changeSet>
+    <changeSet id="fill_table_role" author="r.kuznetsov">
+        <sql>
+            insert into role (name) values ('ROLE_ADMIN'), ('ROLE_MANAGER'), ('ROLE_SUPER_ADMIN')
+        </sql>
+    </changeSet>
+    <changeSet>
+        <sql>
+            alter table person
+            add column role_id bigint references role(id),
+            add column login varchar(64),
+            add column password varchar(64)
+        </sql>
+    </changeSet>
 </databaseChangeLog>
