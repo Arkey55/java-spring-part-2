@@ -14,6 +14,10 @@ public class Person {
     private String firstName;
     @Column(name = "last_name")
     private String lastName;
+    @Column(name = "login")
+    private String login;
+    @Column(name = "password")
+    private String password;
 
     public Person() {
     }
@@ -23,11 +27,24 @@ public class Person {
         this.lastName = lastName;
     }
 
+    @ManyToOne
+    private Role role;
+
 //    @ManyToMany
 //    @JoinTable(name = "transactions",
 //            joinColumns = @JoinColumn(name = "person_id"),
 //            inverseJoinColumns = @JoinColumn(name = "product_id"))
 //    private List<Product> products;
+
+
+
+//    public List<Product> getProducts() {
+//        return products;
+//    }
+//
+//    public void setProducts(List<Product> productList) {
+//        this.products = productList;
+//    }
 
     public long getId() {
         return id;
@@ -53,14 +70,29 @@ public class Person {
         this.lastName = lastName;
     }
 
-//    public List<Product> getProducts() {
-//        return products;
-//    }
-//
-//    public void setProducts(List<Product> productList) {
-//        this.products = productList;
-//    }
+    public String getLogin() {
+        return login;
+    }
 
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Role getRole() {
+        return role;
+    }
+
+    public void setRole(Role role) {
+        this.role = role;
+    }
     @Override
     public String toString() {
         return String.format("id: %s, firstName: %s, lastName: %s", id, firstName, lastName);

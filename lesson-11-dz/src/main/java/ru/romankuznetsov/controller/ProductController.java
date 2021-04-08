@@ -5,6 +5,7 @@ import org.springframework.web.context.annotation.SessionScope;
 import ru.romankuznetsov.dto.ProductDto;
 import ru.romankuznetsov.entity.Product;
 import ru.romankuznetsov.exceptions.PersonNotFoundException;
+import ru.romankuznetsov.exceptions.ProductNotFoundException;
 import ru.romankuznetsov.repository.ProductRepository;
 
 import java.util.List;
@@ -27,7 +28,7 @@ public class ProductController {
 
     @GetMapping("{id}")
     public Product findProduct(@PathVariable long id){
-        return productRepository.findById(id).orElseThrow(() -> new PersonNotFoundException(String.format("клиент с ID [%s] не найден", id)));
+        return productRepository.findById(id).orElseThrow(() -> new ProductNotFoundException(String.format("товар с ID [%s] не найден", id)));
     }
 
     @PostMapping
@@ -48,7 +49,7 @@ public class ProductController {
     }
 
     @DeleteMapping("{id}")
-    public void deletePerson(@PathVariable long id){
-        productRepository.delete(productRepository.findById(id).orElseThrow(() -> new PersonNotFoundException(String.format("клиент с ID [%s] не найден", id))));
+    public void deleteProduct(@PathVariable long id){
+        productRepository.delete(productRepository.findById(id).orElseThrow(() -> new PersonNotFoundException(String.format("товар с ID [%s] не найден", id))));
     }
 }

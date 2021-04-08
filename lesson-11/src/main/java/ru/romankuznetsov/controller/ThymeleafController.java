@@ -32,6 +32,7 @@ public class ThymeleafController {
     public String showMyLoginPage(){
         return "login";
     }
+
     @PostMapping(value = "/addperson")
     public String addPerson(Person person){
         repository.save(person);
